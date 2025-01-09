@@ -4,7 +4,13 @@
   <img src="./assets/banner.jpg" alt="Movie Recommendation System" width="100%" style="max-height: 300px; object-fit: cover;">
 </p>
 <p align="center">
+<img alt="GitHub branch status" src="https://img.shields.io/github/checks-status/Viibrant/movie-recommender/master">
+  <img alt="GitHub Issues" src="https://img.shields.io/github/issues/Viibrant/movie-recommender">
+  <img alt="GitHub Pull Requests" src="https://img.shields.io/github/issues-pr/Viibrant/movie-recommender">
+  <img alt="GitHub contributors" src="https://img.shields.io/github/contributors/Viibrant/movie-recommender">
+  <img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/Viibrant/movie-recommender">
   <img alt="Dummy Status Check" src="https://github.com/Viibrant/movie-recommender/actions/workflows/dummy-check.yaml/badge.svg?branch=master">
+  
 </p>
 
 ## 🚀 Installation

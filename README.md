@@ -1,66 +1,49 @@
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/26466516/107675802-36216b80-6c77-11eb-8db1-4d3407dc53d9.png" alt="Next.js and TypeScript">
-</p>
+# Movie Recommender
 
 <p align="center">
-  <img src="https://img.shields.io/static/v1?label=PRs&message=welcome&style=for-the-badge&color=24B36B&labelColor=000000" alt="PRs welcome!" />
-
-  <img alt="License" src="https://img.shields.io/github/license/chhpt/typescript-nextjs-starter?style=for-the-badge&color=24B36B&labelColor=000000">
-
-  <a href="https://twitter.com/intent/follow?screen_name=cwuyiqing">
-    <img src="https://img.shields.io/twitter/follow/cwuyiqing?style=for-the-badge&color=24B36B&labelColor=000000" alt="Follow @chhpt" />
-  </a>
+  <img src="./assets/banner.jpg" alt="Movie Recommendation System" width="100%" style="max-height: 300px; object-fit: cover;">
+</p>
+<p align="center">
+  <img alt="Dummy Status Check" src="https://github.com/Viibrant/movie-recommender/actions/workflows/dummy-check.yaml/badge.svg?branch=master">
 </p>
 
-<br>
+## 🚀 Installation
 
-A full-featured Next.js starter that includes all you need to build amazing projects 🔥. Fork and customize from [jpedroschmitz](https://github.com/jpedroschmitz/typescript-nextjs-starter)
+This project uses **Bun** for fast builds and package management. Ensure you have [Bun installed](https://bun.sh/):
 
-- 🚀 **Next.js 15 App Router & React 18**
-- ⚙️ **Tailwind CSS 3** - A utility-first CSS framework
-- 🍓 **Styled Components** - Styling React component
-- 📏 **ESLint** — Pluggable JavaScript linter
-- 💖 **Prettier** - Opinionated Code Formatter
-- 🐶 **Husky** — Use git hooks with ease
-- 🚫 **lint-staged** - Run linters against staged git files
-- 😁 **shadcn** - Beautifully designed components that you can copy and paste into your apps.
-- 🗂 **Absolute import** - Import folders and files using the `@` prefix
-- 🤩 **Vercel Serverless/Edge Functions** - Serverless/Edge functions for Next.js
-
-## 🚀 Getting started
-
-The best way to start with this template is using `create-next-app`.
-
-```
-npx create-next-app ts-next -e https://github.com/chhpt/nextjs-starter
+```bash
+bun install
+bun dev
 ```
 
-or
+To view the project, visit: `http://localhost:3000`.
 
-```
-pnpm create next-app ts-next -e https://github.com/chhpt/nextjs-starter
-```
+## 🛠 Features
 
-If you prefer you can clone this repository and run the following commands inside the project folder:
-
-1. `pnpm install` or `npm install`;
-2. `pnpm dev`;
-
-To view the project open `http://localhost:3000`.
+- **Next.js 15 & React 18**
+- **Tailwind CSS** for utility-first styling
+- **shadcn Components** for sleek design
+- **Bun** for fast builds
+- **Conventional Commits** to maintain clear commit history
 
 ## 🤝 Contributing
 
-1. Fork this repository;
-2. Create your branch: `git checkout -b my-new-feature`;
-3. Commit your changes: `git commit -m 'Add some feature'`;
-4. Push to the branch: `git push origin my-new-feature`.
+1. **Fork this repository**: Click the "Fork" button at the top-right of this page.
+2. Clone your fork locally:  
+   ```bash
+   git clone https://github.com/your-username/movie-recommender.git
+   ```
+3. Create a branch for your changes:  
+   ```bash
+   git checkout -b my-feature-branch
+   ```
+4. Make your changes and commit them using **Conventional Commits**. Non-conforming commits will not be accepted.
+5. Push your branch to your fork:  
+   ```bash
+   git push origin my-feature-branch
+   ```
+6. Open a pull request from your fork to this repository.
 
-**After your pull request is merged**, you can safely delete your branch.
+## 📜 License
 
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for more information.
-
----
-
-Made with ♥ by Clare Chang
+This project is licensed under the [MIT License](LICENSE.md).

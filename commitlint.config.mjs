@@ -5,4 +5,5 @@ export default {
         // Disable
         'scope-empty': [0, 'never'],
         'subject-case': [0, 'always'],
+    }
 };

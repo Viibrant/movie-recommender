@@ -17,10 +17,6 @@ jobs:
         uses: ytanikin/pr-conventional-commits@1.4.0
         with:
           task_types: '["feat","fix","docs","test","ci","refactor","perf","chore","revert"]'
-          add_label: 'true'
-          custom_labels: '{"feat": "feature", "fix": "fix", "docs": "documentation", "test": "tests", "ci": "CI/CD", "refactor": "refactor", "perf": "performance", "chore": "chore", "revert": "revert"}'
-          ticket_key_regex: ""
-
   validate-commits:
     name: Validate Commit Messages
     runs-on: ubuntu-latest

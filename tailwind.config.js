@@ -1,3 +1,5 @@
+const tailwindcssAnimate = require('tailwindcss-animate')
+
 module.exports = {
   darkMode: ['class'],
   content: ['./src/**/*.{js,ts,jsx,tsx}'],
@@ -49,11 +51,12 @@ module.exports = {
           4: 'hsl(var(--chart-4))',
           5: 'hsl(var(--chart-5))',
         },
+        customBg: '#000235', // Custom color added here
       },
     },
   },
   variants: {
     extend: {},
   },
-  plugins: [require('tailwindcss-animate')],
+  plugins: [tailwindcssAnimate],
 }

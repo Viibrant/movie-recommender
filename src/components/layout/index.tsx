@@ -9,18 +9,19 @@ export function Layout({ children }: { children: ReactNode }) {
           <div className="flex flex-row items-center">
             <Link className="no-underline transition-colors" href="/">
               <span>
-                <svg height={26} viewBox="0 0 75 65" fill="#000">
-                  <title>Vercel Logo</title>
-                  <path d="M37.59.25l36.95 64H.64l36.95-64z" />
-                </svg>
+                <img
+                  src="https://firebasestorage.googleapis.com/v0/b/whirlreel-ad8c3.firebasestorage.app/o/whirlreel-logo.png?alt=media&token=b2ff94a1-764d-46ba-94cb-7a61c35141e2"
+                  alt="WHIRLREEL Logo"
+                  className="h-16 w-auto" /* Increased size here */
+                />
               </span>
             </Link>
             <ul className="flex content-center items-center">
-              <li className="ml-2 text-gray-200">
+              <li className="ml-4 text-gray-200">
                 <svg
                   viewBox="0 0 24 24"
-                  width={32}
-                  height={32}
+                  width={40} /* Increased size of the icon */
+                  height={40}
                   stroke="currentColor"
                   strokeWidth={1}
                   strokeLinecap="round"
@@ -31,14 +32,14 @@ export function Layout({ children }: { children: ReactNode }) {
                   <path d="M16.88 3.549L7.12 20.451" />
                 </svg>
               </li>
-              <li className="font-medium" style={{ letterSpacing: '.01px' }}>
+              <li className="font-medium ml-4" style={{ letterSpacing: '.01px' }}>
                 <a
                   className="no-underline transition-colors"
                   target="_blank"
                   rel="noreferrer"
                   href="https://github.com/chhpt/nextjs-starter"
                 >
-                  Next.js Starter
+                  WHIRLREEL | AI MOVIE RECOMMENDER
                 </a>
               </li>
             </ul>
@@ -53,7 +54,7 @@ export function Layout({ children }: { children: ReactNode }) {
                   target="_blank"
                   rel="noreferrer"
                 >
-                  More Examples →
+                  PROFILE
                 </a>
               </span>
               <span className="flex items-center ml-2 h-full cursor-not-allowed">
@@ -64,7 +65,7 @@ export function Layout({ children }: { children: ReactNode }) {
                   target="_blank"
                   rel="noreferrer"
                 >
-                  Clone &amp; Deploy
+                  LOGIN
                 </a>
               </span>
             </nav>

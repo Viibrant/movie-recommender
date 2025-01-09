@@ -1,79 +1,100 @@
-import Head from 'next/head'
+'use client'
+import { useState } from 'react'
 
-import styles from '@/styles/home.module.css'
-//ss
+interface Movie {
+  id: number
+  title: string
+  overview: string
+  poster_path: string
+}
+
+const genreMap: Record<string, number> = {
+  action: 28,
+  adventure: 12,
+  comedy: 35,
+  drama: 18,
+  horror: 27,
+  romance: 10749,
+  thriller: 53,
+}
+
+async function fetchMoviesByGenre(genreId: number): Promise<Movie[]> {
+  const apiKey = 'da67a1b04bffccc7b806017e6fd1127d'
+  const response = await fetch(
+    `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_genres=${genreId}`,
+  )
+
+  if (!response.ok) {
+    throw new Error('Failed to fetch movies')
+  }
+
+  const data = await response.json()
+  return data.results.sort(() => 0.5 - Math.random()).slice(0, 5)
+}
+
 export default function Home() {
+  const [movies, setMovies] = useState<Movie[]>([]) // Define the type of movies as Movie[]
+  const [genre, setGenre] = useState<string>('')
+
+  const handleFetchMovies = async () => {
+    const genreId = genreMap[genre.toLowerCase()]
+    if (!genreId) {
+      alert('Invalid genre. Try Action, Comedy, Drama, etc.')
+      return
+    }
+    try {
+      const movies = await fetchMoviesByGenre(genreId)
+      setMovies(movies)
+    }
+    catch (error) {
+      console.error(error)
+      alert('Failed to fetch movies.')
+    }
+  }
+
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    <div className="min-h-screen bg-customBg text-white">
+      <main className="container mx-auto py-10">
+        <h1 className="text-4xl font-bold text-center mb-6">Welcome to WHIRLREEL</h1>
+        <p className="text-lg text-center mb-10">Discover movies by genre!</p>
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing
-          {` `}
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-
-        <p className={styles.description}>This is not an official starter!</p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a href="https://github.com/vercel/next.js/tree/master/examples" className={styles.card}>
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=typescript-nextjs-starter"
-            className={styles.card}
+        {/* Genre Input Section */}
+        <div className="flex justify-center mb-8">
+          <input
+            type="text"
+            placeholder="Enter a genre (e.g., Comedy)"
+            value={genre}
+            onChange={(e) => setGenre(e.target.value)}
+            className="px-4 py-2 rounded-md text-black"
+          />
+          <button
+            type="button" // Add the type attribute
+            onClick={handleFetchMovies}
+            className="ml-4 px-6 py-2 bg-blue-600 hover:bg-blue-700 rounded-md text-white"
           >
-            <h3>Deploy &rarr;</h3>
-            <p>Instantly deploy your Next.js site to a public URL with Vercel.</p>
-          </a>
-          <a
-            href="https://vercel.com/docs/concepts/functions/serverless-functions"
-            className={styles.card}
-          >
-            <h3>Serverless Function &rarr;</h3>
-            <p>Running code on-demand without needing to manage your own infrastructure.</p>
-          </a>
-          <a
-            href="https://vercel.com/docs/concepts/functions/edge-functions"
-            className={styles.card}
-          >
-            <h3>Edge Function &rarr;</h3>
-            <p>Deliver dynamic, personalized content with the lightweight Edge Runtime.</p>
-          </a>
+            Search
+          </button>
+
+        </div>
+
+        {/* Movies Display Section */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          {movies.map((movie) => (
+            <div
+              key={movie.id}
+              className="p-4 bg-gray-800 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
+            >
+              <img
+                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                alt={movie.title}
+                className="rounded-lg mb-4"
+              />
+              <h3 className="text-xl font-semibold">{movie.title}</h3>
+              <p className="text-sm text-gray-400">{movie.overview.slice(0, 100)}...</p>
+            </div>
+          ))}
         </div>
       </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=typescript-nextjs-starter"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by
-          {` `}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
     </div>
   )
 }

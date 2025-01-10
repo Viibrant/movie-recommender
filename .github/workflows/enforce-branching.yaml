@@ -29,6 +29,7 @@ jobs:
         if: ${{ failure() }}
         uses: actions/github-script@v6
         with:
+          github-token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           script: |
             let message = "### 🚨 Pull Request Rejected\n\n"
             if ("${{ github.event.pull_request.base.ref }}" == "master") {

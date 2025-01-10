@@ -2,52 +2,63 @@ name: Enforce Branching Rules
 
 on:
   pull_request:
-    types: [opened, edited, reopened]
+    types: [opened, edited, reopened, synchronize]
 
 jobs:
   enforce-branching:
     runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
 
     steps:
+      # Check if PR is targeting master
       - name: Check Base Branch
+        id: check-base
         run: |
           if [ "${{ github.event.pull_request.base.ref }}" == "master" ]; then
-            echo "❌ Pull requests must not target the 'master' branch."
-            exit 1
+            echo "Pull requests must not target the 'master' branch." >> message.txt
+            echo "base_error=true" >> $GITHUB_ENV
+          else
+            echo "base_error=false" >> $GITHUB_ENV
           fi
 
+      # Check if PR is submitted from master
       - name: Check Source Branch
+        id: check-source
         run: |
           if [ "${{ github.event.pull_request.head.ref }}" == "master" ]; then
-            echo "❌ Pull requests must not be submitted from 'master'. Use a feature branch instead."
-            exit 1
+            echo "Pull requests must not originate from the 'master' branch." >> message.txt
+            echo "source_error=true" >> $GITHUB_ENV
+          else
+            echo "source_error=false" >> $GITHUB_ENV
           fi
 
-      - name: Add Comment to PR
-        if: ${{ failure() }}
-        uses: actions/github-script@v6
-        with:
-          script: |
-            let message = "### 🚨 Pull Request Rejected\n\n"
-            if ("${{ github.event.pull_request.base.ref }}" == "master") {
-              message += "Pull requests **must not target the `master` branch**. Please update the base branch to `develop` or another valid branch.\n\n";
-            }
-            if ("${{ github.event.pull_request.head.ref }}" == "master") {
-              message += "Pull requests **must not originate from the `master` branch** of your fork. Please create a feature branch and submit the pull request from there.\n\n";
-            }
-            message += "#### Steps to Fix:\n"
-            message += "1. Close this pull request.\n";
-            message += "2. Create a feature branch from `develop` on your fork:\n";
-            message += "   ```bash\n   git checkout -b feature/your-feature develop\n   ```\n";
-            message += "3. Commit your changes to the new feature branch.\n";
-            message += "4. Push the branch to your fork:\n";
-            message += "   ```bash\n   git push origin feature/your-feature\n   ```\n";
-            message += "5. Open a new pull request targeting `develop`.\n\n";
-            message += "For more details, see the [Contribution Guidelines](CONTRIBUTING.md).";
+      # Add generic instructions
+      - name: Add Fix Instructions
+        run: |
+          echo "#### Steps to Fix:" >> message.txt
+          echo "1. Close this pull request." >> message.txt
+          echo "2. Create a feature branch from \`develop\` on your fork:" >> message.txt
+          echo "   \`\`\`bash" >> message.txt
+          echo "   git checkout -b feature/your-feature develop" >> message.txt
+          echo "   \`\`\`" >> message.txt
+          echo "3. Commit your changes to the new feature branch." >> message.txt
+          echo "4. Push the branch to your fork:" >> message.txt
+          echo "   \`\`\`bash" >> message.txt
+          echo "   git push origin feature/your-feature" >> message.txt
+          echo "   \`\`\`" >> message.txt
+          echo "5. Open a new pull request targeting \`develop\`." >> message.txt
+          echo "" >> message.txt
+          echo "For more details, see the [Contribution Guidelines](CONTRIBUTING.md)." >> message.txt
 
-            github.rest.issues.createComment({
-              issue_number: ${{ github.event.pull_request.number }},
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: message
-            })
+      # Add Comment to PR
+      - name: Add Comment
+        if: ${{ env.base_error == 'true' || env.source_error == 'true' }}
+        uses: mshick/add-pr-comment@v2
+        with:
+          message-path: message.txt
+
+      # Fail Workflow
+      - name: Fail Workflow
+        if: ${{ env.base_error == 'true' || env.source_error == 'true' }}
+        run: exit 1

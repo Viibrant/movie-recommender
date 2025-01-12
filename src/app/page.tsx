@@ -74,7 +74,58 @@ export default function Home() {
           >
             Search
           </button>
-
+          {/* Genre Buttons */}
+        </div>
+        <div className="flex justify-center mb-8">
+          <button
+            type="button" // Add the type attribute
+            onClick={() => { fetchMoviesByGenre(28).then(setMovies) }}
+            className="ml-4 px-6 py-2 bg-yellow-600 hover:bg-yellow-700 rounded-md text-white"
+          >
+            Action
+          </button>
+          <button
+            type="button" // Add the type attribute
+            onClick={() => { fetchMoviesByGenre(12).then(setMovies) }}
+            className="ml-4 px-6 py-2 bg-yellow-600 hover:bg-yellow-700 rounded-md text-white"
+          >
+            Adventure
+          </button>
+          <button
+            type="button" // Add the type attribute
+            onClick={() => { fetchMoviesByGenre(35).then(setMovies) }}
+            className="ml-4 px-6 py-2 bg-yellow-600 hover:bg-yellow-700 rounded-md text-white"
+          >
+            Comedy
+          </button>
+          <button
+            type="button" // Add the type attribute
+            onClick={() => { fetchMoviesByGenre(18).then(setMovies) }}
+            className="ml-4 px-6 py-2 bg-yellow-600 hover:bg-yellow-700 rounded-md text-white"
+          >
+            Drama
+          </button>
+          <button
+            type="button" // Add the type attribute
+            onClick={() => { fetchMoviesByGenre(27).then(setMovies) }}
+            className="ml-4 px-6 py-2 bg-yellow-600 hover:bg-yellow-700 rounded-md text-white"
+          >
+            Horror
+          </button>
+          <button
+            type="button" // Add the type attribute
+            onClick={() => { fetchMoviesByGenre(10749).then(setMovies) }}
+            className="ml-4 px-6 py-2 bg-yellow-600 hover:bg-yellow-700 rounded-md text-white"
+          >
+            Romance
+          </button>
+          <button
+            type="button" // Add the type attribute
+            onClick={() => { fetchMoviesByGenre(53).then(setMovies) }}
+            className="ml-4 px-6 py-2 bg-yellow-600 hover:bg-yellow-700 rounded-md text-white"
+          >
+            Thriller
+          </button>
         </div>
 
         {/* Movies Display Section */}

@@ -34,21 +34,27 @@ To view the project, visit: `http://localhost:3000`.
 
 ## 🤝 Contributing
 
-1. **Fork this repository**: Click the "Fork" button at the top-right of this page.
-2. Clone your fork locally:  
+To get started quickly, here’s a summary of what you need to do:
+
+1. **Fork** and **clone** the repository to your local machine.
+2. **Create a new branch** off of `develop` (not `master`) for your changes:
    ```bash
-   git clone https://github.com/your-username/movie-recommender.git
+   git checkout -b feature/<your-feature-name>
    ```
-3. Create a branch for your changes:  
+3. **Follow Conventional Commits** for your commit messages:
+   - **One commit per change**: Each commit should do **one thing**.
+   - Format:
+     ```
+     <type>(<scope>): <description>
+     ```
+     Example: `feat(ui): add dropdown for genres`.
+4. **Push** your branch to your fork:
    ```bash
-   git checkout -b my-feature-branch
+   git push origin feature/<your-feature-name>
    ```
-4. Make your changes and commit them using **Conventional Commits**. Non-conforming commits will not be accepted.
-5. Push your branch to your fork:  
-   ```bash
-   git push origin my-feature-branch
-   ```
-6. Open a pull request from your fork to this repository.
+5. **Create a pull request** from your branch to `develop`. Ensure the PR name follows the same commit message format: `feat(ui): add genre selection dropdown`.
+
+For a detailed contribution guide, see the [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## 📜 License
 

@@ -19,17 +19,14 @@ const genreMap: Record<string, number> = {
 }
 
 async function fetchMoviesByGenre(genreId: number): Promise<Movie[]> {
-  const apiKey = 'da67a1b04bffccc7b806017e6fd1127d'
-  const response = await fetch(
-    `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_genres=${genreId}`,
-  )
+  const response = await fetch(`/api/movies?genre=${genreId}`);
 
   if (!response.ok) {
     throw new Error('Failed to fetch movies')
   }
 
-  const data = await response.json()
-  return data.results.sort(() => 0.5 - Math.random()).slice(0, 5)
+  const data = await response.json();
+  return data;
 }
 
 export default function Home() {

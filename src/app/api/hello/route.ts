@@ -1,7 +1,5 @@
-import type { NextApiRequest, NextApiResponse } from 'next'
+import { NextResponse } from "next/server";
 
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-export default (req: NextApiRequest, res: NextApiResponse) => {
-  res.statusCode = 200
-  res.json({ name: `John Doe` })
+export async function GET() {
+  return NextResponse.json({ data: "I love monkeys!" });
 }

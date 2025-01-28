@@ -6,7 +6,7 @@ on:
 
 permissions:
   contents: read
-  pull-requests: read
+  pull-requests: write
 
 jobs:
   validate-pr-title:
@@ -19,7 +19,6 @@ jobs:
           task_types: '["feat","fix","docs","test","ci","refactor","perf","chore","revert"]'
           add_label: 'true'
           custom_labels: '{"feat": "feature", "fix": "fix", "docs": "documentation", "test": "tests", "ci": "CI/CD", "refactor": "refactor", "perf": "performance", "chore": "chore", "revert": "revert"}'
-          ticket_key_regex: '^PROJECT-\\d{2,5}$' # Optional, replace with your regex if needed
 
   validate-commits:
     name: Validate Commit Messages

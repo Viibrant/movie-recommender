@@ -19,8 +19,11 @@ This project uses **Bun** for fast builds and package management. Ensure you hav
 
 ```bash
 bun install
+# Before running, set up the .env file!
 bun dev
 ```
+
+To set up the `.env` file, copy the `.env.example` file and fill in the required values.
 
 To view the project, visit: `http://localhost:3000`.
 
